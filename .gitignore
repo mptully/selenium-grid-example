@@ -1,0 +1,24 @@
+# project files
+.idea
+.eclipse
+.project
+.refactor
+.settings
+.svn
+.classpath
+*.iml
+*.eml
+
+# filesysytem
+.DS_Store
+*.tmp
+*.log
+
+# Excel spreadsheets
+*.xls
+*.xlsx
+
+# Cucumber reports
+cucumber-html/
+cucumber-junit-report.xml
+cucumber.json
