@@ -1,3 +1,10 @@
+# Project specific
+build
+${build}*
+out
+target
+bin
+
 # project files
 .idea
 .eclipse
