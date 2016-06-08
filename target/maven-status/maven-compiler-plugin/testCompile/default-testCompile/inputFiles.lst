@@ -1,9 +1,0 @@
-/Users/matttully/dev/java/selenium-grid-example/src/test/java/com/qaworks/test/framework/config/Configuration.java
-/Users/matttully/dev/java/selenium-grid-example/src/test/java/com/qaworks/test/framework/pages/BasePage.java
-/Users/matttully/dev/java/selenium-grid-example/src/test/java/com/qaworks/test/framework/helpers/WaitHelper.java
-/Users/matttully/dev/java/selenium-grid-example/src/test/java/com/qaworks/test/TestRunner.java
-/Users/matttully/dev/java/selenium-grid-example/src/test/java/com/qaworks/test/cucumber/hooks/CucumberHooks.java
-/Users/matttully/dev/java/selenium-grid-example/src/test/java/com/qaworks/test/framework/pages/HomePage.java
-/Users/matttully/dev/java/selenium-grid-example/src/test/java/com/qaworks/test/ContactUsSteps.java
-/Users/matttully/dev/java/selenium-grid-example/src/test/java/com/qaworks/test/framework/pages/ContactPage.java
-/Users/matttully/dev/java/selenium-grid-example/src/test/java/com/qaworks/test/framework/pages/PageFactory.java
