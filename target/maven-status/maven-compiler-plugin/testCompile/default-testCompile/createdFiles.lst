@@ -1,6 +1,7 @@
 com/qaworks/test/framework/pages/BasePage.class
 com/qaworks/test/framework/pages/PageFactory.class
 com/qaworks/test/cucumber/hooks/CucumberHooks.class
+com/qaworks/test/framework/config/Configuration.class
 com/qaworks/test/TestRunner.class
 com/qaworks/test/ContactUsSteps.class
 com/qaworks/test/framework/helpers/WaitHelper.class

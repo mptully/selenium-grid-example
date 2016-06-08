@@ -1,5 +1,6 @@
 package com.qaworks.test.cucumber.hooks;
 
+import com.qaworks.test.framework.config.Configuration;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 //import org.junit.Before;
@@ -14,16 +15,15 @@ public class CucumberHooks {
     @Before
     public void beforeScenario() throws Exception {
 
-        //TODO get browser from config.  Firefox hardcoded at the moment
-        //String browser = "firefox";
-        String browser = "chrome";
+        Configuration config = Configuration.getConfiguration();
+
+        String browser = config.getBrowserType();
+
         WebDriver driver = null;
 
-        // Local or Grid Run???
-        // Retreive value from config.
-        boolean gridRun = false;
+        if (config.getIsGridRun()) {
 
-        if (gridRun) {
+            driver = PageFactory.getRemoteWebDriver();
 
         } else {
 
