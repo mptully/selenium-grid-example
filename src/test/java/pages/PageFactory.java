@@ -1,24 +1,38 @@
-package com.qaworks.test.support;
+package pages;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.URL;
 
 /**
- * Created by matttully on 09/06/2016.
+ * Created by matthewtully on 09/11/2015.
  */
-public class Webdriver {
+public class PageFactory {
 
-    public Webdriver() {
-        super(new FirefoxDriver());
+    private static WebDriver driver = null;
+
+    /**
+     *
+     */
+    public static HomePage getHomePage() throws Exception {
+        HomePage homePage = new HomePage(getDriver());
+
+        return homePage;
     }
 
-//    @Inject
-    private static WebDriver driver = null;
+    /**
+     *
+     */
+    public static ContactPage getContactPage() throws Exception {
+        ContactPage contactPage = new ContactPage(getDriver());
+
+        return contactPage;
+    }
+
 
     public static WebDriver getFireFoxDriver() {
         driver = new FirefoxDriver();
@@ -26,22 +40,18 @@ public class Webdriver {
         return driver;
     }
 
-//    @Inject
     public static WebDriver getChromeDriver() {
 
-        //System.setProperty("webdriver.chrome.driver", "/Users/matttully/dev/drivers/chromedriver.exe");
-        System.out.println("System.getProperties() = " + System.getProperties());
-
+        //System.setProperty("webdriver.chrome.driver", "//Users//matttully//dev//drivers//chromedriver.exe");
         driver = new ChromeDriver();
 
         return driver;
     }
-//    @Inject
-    public static WebDriver getDriver() {
 
+    public static WebDriver getDriver() {
         return driver;
     }
-//    @Inject
+
     public static WebDriver getRemoteWebDriver() throws Exception {
 
         driver = new RemoteWebDriver(
@@ -51,7 +61,7 @@ public class Webdriver {
         return driver;
 
     }
-//    @Inject
+
     public static void tearDown() {
         if (driver != null) {
             try {
@@ -69,4 +79,6 @@ public class Webdriver {
             }
         }
     }
+
+
 }

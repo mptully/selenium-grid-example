@@ -1,38 +1,25 @@
-package com.qaworks.test.framework.pages;
+package support;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.URL;
 
 /**
- * Created by matthewtully on 09/11/2015.
+ * Created by matttully on 09/06/2016.
  */
-public class PageFactory {
+public class Webdriver {
 
+    public Webdriver() {
+        super(new ChromeDriver());
+    }
+
+//    @Inject
     private static WebDriver driver = null;
-
-    /**
-     *
-     */
-    public static HomePage getHomePage() throws Exception {
-        HomePage homePage = new HomePage(getDriver());
-
-        return homePage;
-    }
-
-    /**
-     *
-     */
-    public static ContactPage getContactPage() throws Exception {
-        ContactPage contactPage = new ContactPage(getDriver());
-
-        return contactPage;
-    }
-
 
     public static WebDriver getFireFoxDriver() {
         driver = new FirefoxDriver();
@@ -40,18 +27,22 @@ public class PageFactory {
         return driver;
     }
 
+//    @Inject
     public static WebDriver getChromeDriver() {
 
-        //System.setProperty("webdriver.chrome.driver", "//Users//matttully//dev//drivers//chromedriver.exe");
+        //System.setProperty("webdriver.chrome.driver", "/Users/matttully/dev/drivers/chromedriver.exe");
+        System.out.println("System.getProperties() = " + System.getProperties());
+
         driver = new ChromeDriver();
 
         return driver;
     }
-
+//    @Inject
     public static WebDriver getDriver() {
+
         return driver;
     }
-
+//    @Inject
     public static WebDriver getRemoteWebDriver() throws Exception {
 
         driver = new RemoteWebDriver(
@@ -61,7 +52,7 @@ public class PageFactory {
         return driver;
 
     }
-
+//    @Inject
     public static void tearDown() {
         if (driver != null) {
             try {
@@ -79,6 +70,4 @@ public class PageFactory {
             }
         }
     }
-
-
 }

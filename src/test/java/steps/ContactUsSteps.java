@@ -1,34 +1,24 @@
-package com.qaworks.test.stepdefintions;
+package steps;
 
-import com.google.inject.Inject;
-import com.qaworks.test.pages.ContactPage;
-import com.qaworks.test.pages.HomePage;
+import pages.ContactPage;
+import pages.HomePage;
+import pages.PageFactory;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
-import cucumber.runtime.java.guice.ScenarioScoped;
 
 import java.util.Map;
 
+import static junit.framework.TestCase.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-@ScenarioScoped
 public class ContactUsSteps {
 
-    private HomePage homePage;
-
-    private ContactPage contactPage;
-
     private Map<String, String> emailDetails;
-
-    @Inject
-    public ContactUsSteps(HomePage homePage, ContactPage contactPage) {
-        this.homePage = homePage;
-        this.contactPage = contactPage;
-    }
 
     @Given("^I am on the QAWorks Staging Site$")
     public void getQAWorksStagingSite() throws Throwable {
 
+        HomePage homePage = PageFactory.getHomePage();
         homePage.navigate();
     }
 
@@ -36,10 +26,12 @@ public class ContactUsSteps {
     public void submitEmailMessage(Map<String, String> emailDetails) throws Throwable {
 
         // open contacts page.
+        HomePage homePage = PageFactory.getHomePage();
         homePage.clickElement("ContactLink");
 
         // submit message
         this.emailDetails = emailDetails;
+        ContactPage contactPage = PageFactory.getContactPage();
         contactPage.setInputFieldWithText("nameField", emailDetails.get("name"));
         contactPage.setInputFieldWithText("emailField", emailDetails.get("email"));
         contactPage.setInputFieldWithText("messageField", emailDetails.get("message"));
@@ -50,9 +42,12 @@ public class ContactUsSteps {
     @Then("^I should be able to view the contact telephone number (.*)$")
     public void verifyContactTelephoneNumber(String telephoneNumber) throws Throwable {
 
+        // open contacts page.
+        HomePage homePage = PageFactory.getHomePage();
         homePage.clickElement("ContactLink");
 
         // get telephone number
+        ContactPage contactPage = PageFactory.getContactPage();
         String displayedTelephoneNumber = contactPage.getTelephoneNumber();
 
         // compare with expected value

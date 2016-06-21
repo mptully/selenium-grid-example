@@ -1,6 +1,6 @@
-package com.qaworks.test.framework.pages;
+package pages;
 
-import com.qaworks.test.framework.helpers.WaitHelper;
+import support.WaitHelper;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 

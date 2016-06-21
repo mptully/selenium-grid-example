@@ -1,23 +1,19 @@
-package com.qaworks.test.hooks;
+package hooks;
 
-import com.google.inject.Inject;
-import com.qaworks.test.config.Configuration;
-import com.qaworks.test.support.Webdriver;
+import config.Configuration;
+import pages.PageFactory;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
-//import org.junit.Before;
 import org.openqa.selenium.WebDriver;
+
+//import org.junit.Before;
 
 /**
  * Created by matthewtully on 09/11/2015.
  */
-public class CucumberHooks {
-
-    @Inject
-    private Webdriver webdriver;
+public class Hooks {
 
     @Before
-    //@ScenarioScoped
     public void beforeScenario() throws Exception {
 
         Configuration config = Configuration.getConfiguration();
@@ -28,18 +24,18 @@ public class CucumberHooks {
 
         if (config.getIsGridRun()) {
 
-            driver = webdriver.getRemoteWebDriver();
+            driver = PageFactory.getRemoteWebDriver();
 
         } else {
 
             if (browser.equals("chrome")) {
-                driver = webdriver.getChromeDriver();
+                driver = PageFactory.getChromeDriver();
 
             } else if (browser.equals("firefox")) {
-                //driver = webdriver.getFireFoxDriver();
+                driver = PageFactory.getFireFoxDriver();
 
             } else if (browser.equals("internetexplorer")) {
-                //driver = webdriver.getInternetExploerDriver();
+                //driver = PageFactory.getInternetExploerDriver();
 
             } else {
                 throw new Exception();
@@ -50,10 +46,9 @@ public class CucumberHooks {
     }
 
     @After
-    //@ScenarioScoped
     public void tearDown() throws Exception {
 
-        webdriver.tearDown();
+        PageFactory.tearDown();
 
     }
 
