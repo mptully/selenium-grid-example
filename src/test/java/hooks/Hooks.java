@@ -1,10 +1,17 @@
 package hooks;
 
 import config.Configuration;
-import pages.PageFactory;
+import cucumber.api.Scenario;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.WebDriverException;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
+import pages.PageFactory_BK;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
-import org.openqa.selenium.WebDriver;
+import support.MyWebDriver;
+
+import javax.inject.Inject;
 
 //import org.junit.Before;
 
@@ -13,43 +20,65 @@ import org.openqa.selenium.WebDriver;
  */
 public class Hooks {
 
+    private final EventFiringWebDriver webDriver;
+
+    @Inject
+    public Hooks(MyWebDriver webDriver) {
+
+        System.out.println("**** In hooks constructor ****");
+        this.webDriver = webDriver;
+
+
+    }
+
     @Before
     public void beforeScenario() throws Exception {
+
+        System.out.println("**** In before hooks - Hooks class ****");
 
         Configuration config = Configuration.getConfiguration();
 
         String browser = config.getBrowserType();
 
-        WebDriver driver = null;
 
-        if (config.getIsGridRun()) {
+        //WebDriver driver = null;
 
-            driver = PageFactory.getRemoteWebDriver();
-
-        } else {
-
-            if (browser.equals("chrome")) {
-                driver = PageFactory.getChromeDriver();
-
-            } else if (browser.equals("firefox")) {
-                driver = PageFactory.getFireFoxDriver();
-
-            } else if (browser.equals("internetexplorer")) {
-                //driver = PageFactory.getInternetExploerDriver();
-
-            } else {
-                throw new Exception();
-            }
-            //maximise window
-            driver.manage().window().maximize();
-        }
+//        if (config.getIsGridRun()) {
+//
+//            webDriver = PageFactory.getRemoteWebDriver();
+//
+//        } else {
+//
+//            if (browser.equals("chrome")) {
+//                webDriver = PageFactory.getChromeDriver();
+//
+//            } else if (browser.equals("firefox")) {
+//                webDriver = PageFactory.getFireFoxDriver();
+//
+//            } else if (browser.equals("internetexplorer")) {
+//                driver = PageFactory.getInternetExploerDriver();
+//
+//            } else {
+//                throw new Exception();
+//            }
+//            maximise window
+//            driver.manage().window().maximize();
+//        }
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown(Scenario scenario) throws Exception {
 
-        PageFactory.tearDown();
+        System.out.println("**** In after hooks - Hooks class ****");
 
+        try {
+            byte[] screenshot = webDriver.getScreenshotAs(OutputType.BYTES);
+            scenario.embed(screenshot, "image/png");
+        } catch (WebDriverException somePlatformsDontSupportScreenshots) {
+            System.err.println(somePlatformsDontSupportScreenshots.getMessage());
+        } finally {
+            PageFactory_BK.tearDown();
+        }
     }
 
 }

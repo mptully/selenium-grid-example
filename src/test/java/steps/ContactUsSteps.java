@@ -1,9 +1,9 @@
 package steps;
 
+import com.google.inject.Inject;
+import cucumber.runtime.java.guice.ScenarioScoped;
 import pages.ContactPage;
 import pages.HomePage;
-import pages.PageFactory;
-import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 
 import java.util.Map;
@@ -11,47 +11,58 @@ import java.util.Map;
 import static junit.framework.TestCase.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+@ScenarioScoped
 public class ContactUsSteps {
 
     private Map<String, String> emailDetails;
 
-    @Given("^I am on the QAWorks Staging Site$")
-    public void getQAWorksStagingSite() throws Throwable {
+    private final ContactPage contactPage;
 
-        HomePage homePage = PageFactory.getHomePage();
-        homePage.navigate();
+    private final HomePage homePage;
+
+
+    @Inject
+    public ContactUsSteps(HomePage homePage, ContactPage contactPage) {
+
+        this.homePage = homePage;
+        this.contactPage = contactPage;
+
     }
+
+    @Then("^I am on the QAWorks Contact Page$")
+    public void navigateToContactPage() throws Throwable {
+
+        // open contacts page.
+        homePage.getHomePage();
+        homePage.clickContactLink();
+
+    }
+
 
     @Then("^I should be able to contact QAWorks with the following information$")
     public void submitEmailMessage(Map<String, String> emailDetails) throws Throwable {
 
         // open contacts page.
-        HomePage homePage = PageFactory.getHomePage();
-        homePage.clickElement("ContactLink");
+        homePage.clickContactLink();
 
         // submit message
         this.emailDetails = emailDetails;
-        ContactPage contactPage = PageFactory.getContactPage();
-        contactPage.setInputFieldWithText("nameField", emailDetails.get("name"));
-        contactPage.setInputFieldWithText("emailField", emailDetails.get("email"));
-        contactPage.setInputFieldWithText("messageField", emailDetails.get("message"));
-        contactPage.clickElement("sendButton");
+        contactPage.setNameField(emailDetails.get("name"));
+        contactPage.setEmailFieldField(emailDetails.get("email"));
+        contactPage.setMessageField(emailDetails.get("message"));
+        contactPage.clickSendButton();
 
     }
 
     @Then("^I should be able to view the contact telephone number (.*)$")
     public void verifyContactTelephoneNumber(String telephoneNumber) throws Throwable {
 
-        // open contacts page.
-        HomePage homePage = PageFactory.getHomePage();
-        homePage.clickElement("ContactLink");
-
         // get telephone number
-        ContactPage contactPage = PageFactory.getContactPage();
         String displayedTelephoneNumber = contactPage.getTelephoneNumber();
 
         // compare with expected value
-        assertTrue("Contact telephone number not displayed correctly. Expected = " + telephoneNumber + " Actual = " + displayedTelephoneNumber, telephoneNumber.equals(displayedTelephoneNumber));
+        assertTrue("Contact telephone number not displayed correctly. Expected = " + telephoneNumber + " Actual = "
+                + displayedTelephoneNumber, telephoneNumber.equals(displayedTelephoneNumber));
 
     }
 }

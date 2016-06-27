@@ -1,73 +1,75 @@
-package support;
+package pages;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.URL;
 
 /**
- * Created by matttully on 09/06/2016.
+ * Created by matthewtully on 09/11/2015.
  */
-public class Webdriver {
+public class PageFactory_BK {
 
-    public Webdriver() {
-        super(new ChromeDriver());
-    }
-
-//    @Inject
-    private static WebDriver driver = null;
+    private static WebDriver webDriver = null;
 
     public static WebDriver getFireFoxDriver() {
-        driver = new FirefoxDriver();
 
-        return driver;
+        if (webDriver == null) {
+
+            webDriver = new FirefoxDriver();
+
+        }
+
+        return webDriver;
     }
 
-//    @Inject
     public static WebDriver getChromeDriver() {
 
-        //System.setProperty("webdriver.chrome.driver", "/Users/matttully/dev/drivers/chromedriver.exe");
-        System.out.println("System.getProperties() = " + System.getProperties());
+        if (webDriver == null) {
 
-        driver = new ChromeDriver();
+            webDriver = new ChromeDriver();
 
-        return driver;
+        }
+
+        return webDriver;
     }
-//    @Inject
+
     public static WebDriver getDriver() {
 
-        return driver;
+        return webDriver;
     }
-//    @Inject
+
     public static WebDriver getRemoteWebDriver() throws Exception {
 
-        driver = new RemoteWebDriver(
+        webDriver = new RemoteWebDriver(
                 new URL("http://localhost:4444/wd/hub"),
                 DesiredCapabilities.firefox());
 
-        return driver;
+        return webDriver;
 
     }
-//    @Inject
+
     public static void tearDown() {
-        if (driver != null) {
+        if (webDriver != null) {
             try {
-                driver.manage().deleteAllCookies();
+                webDriver.manage().deleteAllCookies();
             } catch (Exception e) {
                 //TODO logging
                 System.out.println("Exception: Unable to delete all coookies!");
 
             }
             try {
-                driver.quit();
+                webDriver.close();
+                //webDriver.quit();
             } catch (Exception e) {
                 //TODO logging
                 System.out.println("Exception: Unable execute driver.quit");
             }
         }
     }
+
+
 }

@@ -1,18 +1,39 @@
 package pages;
 
+import com.google.inject.Inject;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import support.MyWebDriver;
 
 /**
  * Created by matthewtully on 09/11/2015.
  */
-public class HomePage extends BasePage {
+public class HomePage {
 
-    public HomePage(WebDriver driver) throws Exception {
-        super(driver, "HomePage");
+    WebDriver webDriver;
+
+
+
+    @FindBy(linkText="Contact")
+    WebElement contactLink;
+
+    @Inject
+    public HomePage(MyWebDriver webDriver) throws Exception {
+
+        this.webDriver = webDriver;
+        PageFactory.initElements(webDriver, this);
 
     }
 
-    public void navigate() {
-        this.driver.get("http://staging.qaworks.com:1403/");
+    public void getHomePage() {
+
+        this.webDriver.get("http://www.qaworks.com/");
+    }
+
+    public void clickContactLink() {
+
+        contactLink.click();
     }
 }

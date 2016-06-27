@@ -25,7 +25,7 @@ public class Configuration {
         myprops = new Properties(System.getProperties());
 
         try {
-            myprops.load(new FileInputStream("src/test/java/com/qaworks/test/framework/config/configuration.properties"));
+            myprops.load(new FileInputStream("src/test/java/config/configuration.properties"));
         } catch (FileNotFoundException fnfe) {
             System.err.println("ERROR: " + fnfe.getMessage());
         } catch (IOException ioe) {
