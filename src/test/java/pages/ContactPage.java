@@ -1,6 +1,5 @@
 package pages;
 
-import com.google.inject.Inject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -19,7 +18,6 @@ import java.util.Set;
  */
 public class ContactPage {
 
-    @Inject
     private WebDriver webDriver;
 
     @FindBy(id = "ctl00_MainContent_NameBox")
@@ -37,19 +35,14 @@ public class ContactPage {
     @FindBy(id = "ContactInfoBlock1")
     WebElement addressDetails;
 
-    //@FindBy(tagName = "h3")
-    //WebElement addressDetails;
-
     public static Map<String, String> addressDetailsContainer;// = new Map<String, String>();
 
-//    @Inject
-//    public ContactPage(WebDriverProvider webDriver) throws Exception {
-//
-//        this.webDriver = webDriver;
-//        PageFactory.initElements(webDriver, this);
-//
-//
-//    }
+    public ContactPage(WebDriverProvider webDriver) throws Exception {
+
+        this.webDriver = webDriver.getWebDriver();
+        PageFactory.initElements(this.webDriver, this);
+
+    }
 
     public Map<String, String> getAddressDetails() throws Exception {
 

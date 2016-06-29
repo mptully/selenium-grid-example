@@ -7,33 +7,24 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.remote.Augmenter;
-import org.openqa.selenium.support.events.EventFiringWebDriver;
 import pages.PageFactory;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import support.WebDriverProvider;
-
-import javax.inject.Inject;
-
-//import org.junit.Before;
 
 /**
  * Created by matthewtully on 09/11/2015.
  */
 public class Hooks {
 
-//    private final WebDriver webDriver;
-
-//    @Inject
-//    public Hooks(WebDriverProvider webDriver, PageFactory pageFactory) {
-//
-//        System.out.println("**** In hooks constructor ****");
-//        this.webDriver = webDriver.get();
-//
-//    }
-
-    @Inject
     private WebDriver webDriver;
+
+    public Hooks(WebDriverProvider webDriver) {
+
+        System.out.println("**** In hooks constructor ****");
+        this.webDriver = webDriver.getWebDriver();
+
+    }
 
     @Before
     public void beforeScenario() throws Exception {

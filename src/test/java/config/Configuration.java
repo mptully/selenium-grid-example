@@ -1,7 +1,5 @@
 package config;
 
-import com.google.inject.Inject;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -22,7 +20,6 @@ public class Configuration {
 
     private static Configuration configuration;
 
-    @Inject
     public Configuration() throws Exception {
 
         myprops = new Properties(System.getProperties());

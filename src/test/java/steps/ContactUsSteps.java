@@ -1,7 +1,6 @@
 package steps;
 
-import com.google.inject.Inject;
-import cucumber.runtime.java.guice.ScenarioScoped;
+import org.openqa.selenium.support.PageFactory;
 import pages.ContactPage;
 import pages.HomePage;
 import cucumber.api.java.en.Then;
@@ -11,7 +10,6 @@ import java.util.Map;
 import static junit.framework.TestCase.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-@ScenarioScoped
 public class ContactUsSteps {
 
     private Map<String, String> emailDetails;
@@ -20,8 +18,6 @@ public class ContactUsSteps {
 
     private final HomePage homePage;
 
-
-    @Inject
     public ContactUsSteps(HomePage homePage, ContactPage contactPage) {
 
         this.homePage = homePage;

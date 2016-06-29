@@ -1,6 +1,5 @@
 package pages;
 
-import com.google.inject.Inject;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -16,16 +15,14 @@ import java.net.URL;
  */
 public class PageFactory {
 
-//    WebDriver webDriver;
-//
-//    @Inject
-//    public PageFactory(WebDriverProvider webDriver) {
-//
-//        this.webDriver = webDriver;
-//
-//    }
+    private static WebDriver webDriver;
 
-    private static WebDriver webDriver = null;
+    public PageFactory(WebDriverProvider webDriver) {
+
+        this.webDriver = webDriver.getWebDriver();
+    }
+
+
 
     public static WebDriver getFireFoxWebDriver() {
 

@@ -1,6 +1,5 @@
 package pages;
 
-import com.google.inject.Inject;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,19 +11,16 @@ import support.WebDriverProvider;
  */
 public class HomePage extends BasePage {
 
-    @Inject
     private WebDriver webDriver;
 
-    @FindBy(linkText="Contact")
+    @FindBy(linkText = "Contact")
     WebElement contactLink;
 
-//    @Inject
-//    public HomePage(MyWebDriver webDriver) throws Exception {
-//
-//        this.webDriver = webDriver;
-//        PageFactory.initElements(webDriver, this);
-//
-//    }
+    public HomePage(WebDriverProvider webDriver) throws Exception {
+
+        this.webDriver = webDriver.getWebDriver();
+        PageFactory.initElements(this.webDriver, this);
+    }
 
     public void getHomePage() {
 

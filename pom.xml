@@ -37,13 +37,13 @@
     </dependency>
     <dependency>
       <groupId>info.cukes</groupId>
-      <artifactId>cucumber-guice</artifactId>
+      <artifactId>cucumber-picocontainer</artifactId>
       <version>${cucumber.version}</version>
     </dependency>
     <dependency>
-      <groupId>com.google.inject</groupId>
-      <artifactId>guice</artifactId>
-      <version>3.0</version>
+      <groupId>picocontainer</groupId>
+      <artifactId>picocontainer</artifactId>
+      <version>3</version>
     </dependency>
   </dependencies>
 </project>
