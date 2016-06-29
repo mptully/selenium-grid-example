@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import support.MyWebDriver;
+import support.WebDriverProvider;
 import support.WaitHelper;
 
 import java.util.Collection;
@@ -19,7 +19,8 @@ import java.util.Set;
  */
 public class ContactPage {
 
-    WebDriver webDriver;
+    @Inject
+    private WebDriver webDriver;
 
     @FindBy(id = "ctl00_MainContent_NameBox")
     WebElement nameField;
@@ -41,14 +42,14 @@ public class ContactPage {
 
     public static Map<String, String> addressDetailsContainer;// = new Map<String, String>();
 
-    @Inject
-    public ContactPage(MyWebDriver webDriver) throws Exception {
-
-        this.webDriver = webDriver;
-        PageFactory.initElements(webDriver, this);
-
-
-    }
+//    @Inject
+//    public ContactPage(WebDriverProvider webDriver) throws Exception {
+//
+//        this.webDriver = webDriver;
+//        PageFactory.initElements(webDriver, this);
+//
+//
+//    }
 
     public Map<String, String> getAddressDetails() throws Exception {
 
