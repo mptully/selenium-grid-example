@@ -16,6 +16,33 @@ public class HomePage extends BasePage {
     @FindBy(linkText = "Contact")
     WebElement contactLink;
 
+    @FindBy(linkText = "Home")
+    WebElement homeTab;
+
+    @FindBy(linkText = "Services")
+    WebElement servicesTab;
+
+    @FindBy(linkText = "Works")
+    WebElement worksTab;
+
+    @FindBy(linkText = "Technology")
+    WebElement technologyTab;
+
+    @FindBy(linkText = "Prices")
+    WebElement pricesTab;
+
+    @FindBy(linkText = "News")
+    WebElement newsTab;
+
+    @FindBy(linkText = "AboutUs")
+    WebElement aboutUsTab;
+
+    @FindBy(linkText = "Careers")
+    WebElement careersTab;
+
+    @FindBy(linkText = "Contact")
+    WebElement contactTab;
+
     public HomePage(WebDriverProvider webDriver) throws Exception {
 
         this.webDriver = webDriver.getWebDriver();
@@ -30,5 +57,50 @@ public class HomePage extends BasePage {
     public void clickContactLink() {
 
         contactLink.click();
+    }
+
+    public boolean isHomeTabDisplayed() {
+
+        return homeTab.isDisplayed();
+    }
+
+    public boolean isServicesTabDisplayed() {
+
+        return servicesTab.isDisplayed();
+    }
+
+    public boolean isWorksTabDisplayed() {
+
+        return worksTab.isDisplayed();
+    }
+
+    public boolean isTechnologyTabDisplayed() {
+
+        return technologyTab.isDisplayed();
+    }
+
+    public boolean isPricesTabDisplayed() {
+
+        return pricesTab.isDisplayed();
+    }
+
+    public boolean isNewsTabDisplayed() {
+
+        return newsTab.isDisplayed();
+    }
+
+    public boolean isAboutUsTabDisplayed() {
+
+        return aboutUsTab.isDisplayed();
+    }
+
+    public boolean isCareersTabDisplayed() {
+
+        return careersTab.isDisplayed();
+    }
+
+    public boolean isContactTabDisplayed() {
+
+        return contactTab.isDisplayed();
     }
 }

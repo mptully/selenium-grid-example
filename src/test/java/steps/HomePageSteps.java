@@ -1,6 +1,8 @@
 package steps;
 
+import cucumber.api.DataTable;
 import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
 import pages.HomePage;
 
 /**
@@ -22,6 +24,20 @@ public class HomePageSteps {
 
         homePage.getHomePage();
 
+    }
+
+
+    @Then("^I should be able to see the following tabs$")
+    public void i_should_be_able_to_see_the_following_tabs(DataTable arg1) throws Throwable {
+
+        String msg = "";
+
+        switch (false) {
+            case homePage.isAboutUsTabDisplayed():
+                msg = "about us tab not displayed";
+            case homePage.isHomeTabDisplayed():
+                msg = "home tab not displayed";
+        }
     }
 
 }

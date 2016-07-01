@@ -81,10 +81,11 @@ public class PageFactory {
 
             }
             try {
-                webDriver.close();
+                webDriver.quit();
+                //webDriver.close();
+                //TODO should we be setting webDriver to null?
                 webDriver = null;
                 System.out.println("**** In PageFactory tearDown - after webDriver.close ****");
-                //webDriver.quit();
             } catch (Exception e) {
                 //TODO logging
                 System.out.println("Exception: Unable execute driver.quit");
